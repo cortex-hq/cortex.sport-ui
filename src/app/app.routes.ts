@@ -17,6 +17,8 @@ import { TemplatesComponent } from './templates/templates.component';
 import { DashboardTemplateComponent } from './templates/dashboard/dashboard.component';
 import { EmailTemplateComponent } from './templates/email/email.component';
 import { EditorTemplateComponent } from './templates/editor/editor.component';
+import {SportsComponent} from "./sports/sports.component";
+import {SportFormComponent} from "./sports/form/sport-form/sport-form.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -42,6 +44,12 @@ const routes: Routes = [
       {path: 'add', component: UsersFormComponent},
       {path: ':id/delete', component: UsersFormComponent},
       {path: ':id/edit', component: UsersFormComponent},
+    ]},
+    {path: 'sport', children: [
+      {path: '', component: SportsComponent},
+      {path: 'add', component: SportFormComponent},
+      {path: ':id/delete', component: SportFormComponent},
+      {path: ':id/edit', component: SportFormComponent},
     ]},
     {path: 'templates', children: [
       {path: '', component: TemplatesComponent},

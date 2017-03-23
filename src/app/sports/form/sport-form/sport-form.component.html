@@ -1,0 +1,71 @@
+<td-layout-nav logo="assets:covalent">
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <span>Product Name</span>
+    <span flex></span>
+  </div>
+  <td-layout-manage-list #manageList
+                         [opened]="media.registerQuery('gt-sm') | async"
+                         [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+                         [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+    <md-toolbar td-sidenav-content>
+      <span>Sports</span>
+    </md-toolbar>
+    <!--<md-nav-list td-sidenav-content (click)="!media.query('gt-sm') && manageList.close()">-->
+      <!--<a md-list-item>-->
+        <!--<md-icon md-list-icon>account_circle</md-icon>-->
+        <!--All Users-->
+      <!--</a>-->
+      <!--<a md-list-item>-->
+        <!--<md-icon md-list-icon>star</md-icon>-->
+        <!--Favorites-->
+      <!--</a>-->
+      <!--<a md-list-item>-->
+        <!--<md-icon md-list-icon>verified_user</md-icon>-->
+        <!--Administrators-->
+      <!--</a>-->
+      <!--<a md-list-item>-->
+        <!--<md-icon md-list-icon>supervisor_account</md-icon>-->
+        <!--Non-Admins-->
+      <!--</a>-->
+      <!--<a md-list-item>-->
+        <!--<md-icon md-list-icon>inbox</md-icon>-->
+        <!--Archived-->
+      <!--</a>-->
+    <!--</md-nav-list>-->
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span class="text-capital">{{action}} sport</span>
+    </div>
+    <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+      <md-card-title>Sport Form</md-card-title>
+      <md-divider></md-divider>
+      <md-card-content class="push-bottom-none">
+        <form #sportForm="ngForm">
+          <div layout="row">
+            <md-input-container flex>
+              <input mdInput
+                     #labelElement
+                     #labelControl="ngModel"
+                     type="text"
+                     placeholder="Label"
+                     [(ngModel)]="label"
+                     name="label"
+                     maxlength="20"
+                     required>
+              <md-hint align="start">
+                <span [hidden]="labelControl.pristine" class="tc-red-600">
+                  <span [hidden]="!labelControl.errors?.required">Required</span>
+                </span>
+              </md-hint>
+              <md-hint align="end">{{labelElement.value.length}} / 20</md-hint>
+            </md-input-container>
+          </div>
+        </form>
+      </md-card-content>
+      <md-divider></md-divider>
+      <md-card-actions>
+        <button md-button [disabled]="!sportForm.form.valid" color="primary" (click)="save()">SAVE</button>
+        <button md-button (click)="goBack()">CANCEL</button>
+      </md-card-actions>
+    </md-card>
+  </td-layout-manage-list>
+</td-layout-nav>
