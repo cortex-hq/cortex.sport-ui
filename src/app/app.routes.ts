@@ -21,6 +21,10 @@ import {SportsComponent} from "./sports/sports.component";
 import {SportFormComponent} from "./sports/form/sport-form.component";
 import {SeasonsComponent} from "./seasons/seasons.component";
 import {SeasonFormComponent} from "./seasons/form/season-form.component";
+import {GamesComponent} from "./games/games.component";
+import {GameFormComponent} from "./games/form/game-form.component";
+import {TeamsComponent} from "./teams/teams.component";
+import {TeamFormComponent} from "./teams/form/team-form/team-form.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -58,6 +62,18 @@ const routes: Routes = [
       {path: 'add', component: SeasonFormComponent},
       {path: ':id/delete', component: SeasonFormComponent},
       {path: ':id/edit', component: SeasonFormComponent},
+    ]},
+    {path: 'games', children: [
+      {path: '', component: GamesComponent},
+      {path: 'add', component: GameFormComponent},
+      {path: ':id/delete', component: GameFormComponent},
+      {path: ':id/edit', component: GameFormComponent},
+    ]},
+    {path: 'teams', children: [
+      {path: '', component: TeamsComponent},
+      {path: 'add', component: TeamFormComponent},
+      {path: ':id/delete', component: TeamFormComponent},
+      {path: ':id/edit', component: TeamFormComponent},
     ]},
     {path: 'templates', children: [
       {path: '', component: TemplatesComponent},

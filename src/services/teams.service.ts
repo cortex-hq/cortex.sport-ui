@@ -1,52 +1,53 @@
 import {Injectable} from "@angular/core";
+import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
-import {Response, Http} from "@angular/http";
 import {CORTEX_CORE_SPORT_SERVICE} from "../config/api.config";
-
-export interface ISport {
+export interface ITeam{
   id: string;
-  label: string;
+  sportId: string;
+  // players: Player[];
+  // coach: Coach;
 }
 
 @Injectable()
-export class SportsService {
+export class TeamsService {
 
   constructor(private http: Http) {}
 
-  getAll(): Observable<ISport[]> {
-    return this.http.get(CORTEX_CORE_SPORT_SERVICE.concat('/sport.all'))
+  getAll(): Observable<ITeam[]> {
+    return this.http.get(CORTEX_CORE_SPORT_SERVICE.concat('/team.all'))
       .map((res: Response) => {
         return res.json().value;
       })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  get(id: string): Observable<ISport[]> {
-    return this.http.get(CORTEX_CORE_SPORT_SERVICE.concat('/sport.get/' + id))
+  get(id: string): Observable<ITeam[]> {
+    return this.http.get(CORTEX_CORE_SPORT_SERVICE.concat('/team.get/' + id))
       .map((res: Response) => {
         return res.json().value;
       })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  create(team: ISport): Observable<ISport[]> {
-    return this.http.post(CORTEX_CORE_SPORT_SERVICE.concat('/sport.create/'), team)
+  create(sport: ITeam): Observable<ITeam[]> {
+    return this.http.post(CORTEX_CORE_SPORT_SERVICE.concat('/team.create/'), sport)
       .map((res: Response) => {
         return res.json().value;
       })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  update(team: ISport): Observable<ISport[]> {
-    return this.http.post(CORTEX_CORE_SPORT_SERVICE.concat('/sport.update/'), team)
+  update(sport: ITeam): Observable<ITeam[]> {
+    return this.http.post(CORTEX_CORE_SPORT_SERVICE.concat('/team.update/'), sport)
       .map((res: Response) => {
         return res.json().value;
       })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  delete(team: ISport): Observable<ISport[]> {
-    return this.http.post(CORTEX_CORE_SPORT_SERVICE.concat('/sport.delete'), team)
+  delete(sport: ITeam): Observable<ITeam[]> {
+    return this.http.post(CORTEX_CORE_SPORT_SERVICE.concat('/team.delete'), sport)
       .map((res: Response) => {
         return res.json().value;
       })

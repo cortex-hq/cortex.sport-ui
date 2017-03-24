@@ -1,0 +1,158 @@
+<td-layout-nav logo="assets:covalent">
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <span>Product Name</span>
+    <span flex></span>
+  </div>
+  <td-layout-manage-list #manageList
+                         [opened]="media.registerQuery('gt-sm') | async"
+                         [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+                         [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+    <md-toolbar td-sidenav-content>
+      <span>Games</span>
+    </md-toolbar>
+    <!--<md-nav-list td-sidenav-content (click)="!media.query('gt-sm') && manageList.close()">-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>account_circle</md-icon>-->
+    <!--All Users-->
+    <!--</a>-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>star</md-icon>-->
+    <!--Favorites-->
+    <!--</a>-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>verified_user</md-icon>-->
+    <!--Administrators-->
+    <!--</a>-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>supervisor_account</md-icon>-->
+    <!--Non-Admins-->
+    <!--</a>-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>inbox</md-icon>-->
+    <!--Archived-->
+    <!--</a>-->
+    <!--</md-nav-list>-->
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span class="text-capital">{{action}} game</span>
+    </div>
+    <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+      <md-card-title>Game Form</md-card-title>
+      <md-divider></md-divider>
+      <md-card-content class="push-bottom-none">
+        <form #gameForm="ngForm">
+          <!--Season-->
+          <div layout="row">
+            <md-select flex placeholder="Select season"
+                       [(ngModel)]="seasonId"
+                       name="seasonId"
+                       required
+                       #sportIdDateElement
+                       #sportIdControl="ngModel">
+              <md-option *ngFor="let season of seasons" [value]="season.id">
+                {{season.startDate}} - {{season.endDate}}
+              </md-option>
+            </md-select>
+          </div>
+          <!--Teams-->
+          <div layout="row">
+            <md-select flex placeholder="Select home team"
+                       [(ngModel)]="homeTeamId"
+                       name="homeTeamId"
+                       required
+                       #sportIdDateElement
+                       #sportIdControl="ngModel">
+              <md-option *ngFor="let team of teams" [value]="team.id">
+                {{team.id}}
+              </md-option>
+            </md-select>
+            <md-select flex placeholder="Select away team"
+                       [(ngModel)]="awayTeamId"
+                       name="awayTeamId"
+                       required
+                       #awayTeamIdElement
+                       #awayTeamIdControl="ngModel">
+              <md-option *ngFor="let team of teams" [value]="team.id">
+                {{team.id}}
+              </md-option>
+            </md-select>
+          </div>
+
+          <!--Scores-->
+          <div layout="row">
+            <md-input-container flex>
+              <input mdInput
+                     #homeScoredElement
+                     #homeScoreControl="ngModel"
+                     type="number"
+                     placeholder="Home score"
+                     [(ngModel)]="homeScore"
+                     name="homeScore"
+                     required>
+              <md-hint align="start">
+                <span [hidden]="homeScoreControl.pristine" class="tc-red-600">
+                  <span [hidden]="!homeScoreControl.errors?.required">Required</span>
+                </span>
+              </md-hint>
+            </md-input-container>
+            <md-input-container>
+              <input mdInput
+                     #awayScoreElement
+                     #awayScoreControl="ngModel"
+                     type="number"
+                     placeholder="Away Score"
+                     [(ngModel)]="awayScore"
+                     name="awayScore"
+                     required>
+              <md-hint align="start">
+                <span [hidden]="awayScoreControl.pristine" class="tc-red-600">
+                  <span [hidden]="!awayScoreControl.errors?.required">Required</span>
+                </span>
+              </md-hint>
+            </md-input-container>
+          </div>
+          <!--Date-->
+          <div layout="row">
+            <md-input-container flex>
+              <input mdInput
+                     #dateElement
+                     #dateControl="ngModel"
+                     type="text"
+                     placeholder="Date"
+                     [(ngModel)]="date"
+                     name="date"
+                     required>
+              <md-hint align="start">
+                <span [hidden]="dateControl.pristine" class="tc-red-600">
+                  <span [hidden]="!dateControl.errors?.required">Required</span>
+                </span>
+              </md-hint>
+            </md-input-container>
+          </div>
+          <!--Where-->
+          <div layout="row">
+            <md-input-container flex>
+              <input mdInput
+                     #whereElement
+                     #whereControl="ngModel"
+                     type="text"
+                     placeholder="Where"
+                     [(ngModel)]="where"
+                     name="where"
+                     required>
+              <md-hint align="start">
+                <span [hidden]="whereControl.pristine" class="tc-red-600">
+                  <span [hidden]="!whereControl.errors?.required">Required</span>
+                </span>
+              </md-hint>
+            </md-input-container>
+          </div>
+        </form>
+      </md-card-content>
+      <md-divider></md-divider>
+      <md-card-actions>
+        <button md-button [disabled]="!gameForm.form.valid" color="primary" (click)="save()">SAVE</button>
+        <button md-button (click)="goBack()">CANCEL</button>
+      </md-card-actions>
+    </md-card>
+  </td-layout-manage-list>
+</td-layout-nav>

@@ -36,8 +36,8 @@ export class SportFormComponent implements OnInit, AfterViewInit {
     });
     this._route.params.subscribe((params: {id: string}) => {
       if (params.id) {
-        let userId: string = params.id;
-        this._sportsService.get(userId).subscribe((sport: any) => {
+        let sportId: string = params.id;
+        this._sportsService.get(sportId).subscribe((sport: any) => {
           this.label = sport.label;
           this.id = sport.label;
         });

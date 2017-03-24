@@ -36,6 +36,10 @@ import { SportsComponent } from './sports/sports.component';
 import { SportFormComponent } from './sports/form/sport-form.component';
 import { SeasonsComponent } from './seasons/seasons.component';
 import { SeasonFormComponent } from './seasons/form/season-form.component';
+import { GamesComponent } from './games/games.component';
+import { GameFormComponent } from './games/form/game-form.component';
+import { TeamsComponent } from './teams/teams.component';
+import { TeamFormComponent } from './teams/form/team-form/team-form.component';
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
@@ -65,7 +69,11 @@ const httpInterceptorProviders: Type<any>[] = [
     SportsComponent,
     SportFormComponent,
     SeasonsComponent,
-    SeasonFormComponent
+    SeasonFormComponent,
+    GamesComponent,
+    GameFormComponent,
+    TeamsComponent,
+    TeamFormComponent
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     BrowserModule,
