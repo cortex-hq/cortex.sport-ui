@@ -1,12 +1,12 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {SportsService, ISport} from "../../../../services/sports.service";
+import {SportsService, ISport} from "../../../services/sports.service";
 import {TdMediaService} from "@covalent/core";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-sport-form',
-  templateUrl: './sport-form.component.html',
-  styleUrls: ['./sport-form.component.scss'],
+  templateUrl: 'sport-form.component.html',
+  styleUrls: ['sport-form.component.scss'],
   viewProviders: [SportsService]
 })
 export class SportFormComponent implements OnInit, AfterViewInit {
@@ -48,8 +48,9 @@ export class SportFormComponent implements OnInit, AfterViewInit {
   save(): void {
     this.sport = {
       label: this.label,
-      id: this.id ? this.id : this.label
+      id: this.id
     };
+
     if (this.action === 'add') {
       this._sportsService.create(this.sport).subscribe(() => {
         this.goBack();

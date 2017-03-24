@@ -1,0 +1,116 @@
+<td-layout-nav logo="assets:covalent">
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <span>Product Name</span>
+    <span flex></span>
+  </div>
+  <td-layout-manage-list #manageList
+                         [opened]="media.registerQuery('gt-sm') | async"
+                         [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+                         [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+    <md-toolbar td-sidenav-content>
+      <span>Seasons</span>
+    </md-toolbar>
+    <!--<md-nav-list td-sidenav-content (click)="!media.query('gt-sm') && manageList.close()">-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>account_circle</md-icon>-->
+    <!--All Users-->
+    <!--</a>-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>star</md-icon>-->
+    <!--Favorites-->
+    <!--</a>-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>verified_user</md-icon>-->
+    <!--Administrators-->
+    <!--</a>-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>supervisor_account</md-icon>-->
+    <!--Non-Admins-->
+    <!--</a>-->
+    <!--<a md-list-item>-->
+    <!--<md-icon md-list-icon>inbox</md-icon>-->
+    <!--Archived-->
+    <!--</a>-->
+    <!--</md-nav-list>-->
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span class="text-capital">{{action}} season</span>
+    </div>
+    <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push']">
+      <md-card-title>Season Form</md-card-title>
+      <md-divider></md-divider>
+      <md-card-content class="push-bottom-none">
+        <form #seasonForm="ngForm">
+          <!--ID-->
+          <div layout="row">
+            <md-input-container flex>
+              <input mdInput
+                     #idElement
+                     #idControl="ngModel"
+                     type="text"
+                     placeholder="Id"
+                     [(ngModel)]="id"
+                     [disabled]="action !== 'add'"
+                     name="id"
+                     required>
+              <md-hint align="start">
+                <span [hidden]="idControl.pristine" class="tc-red-600">
+                  <span [hidden]="!idControl.errors?.required">Required</span>
+                </span>
+              </md-hint>
+            </md-input-container>
+          </div>
+          <!--Start & end date-->
+          <div layout="row">
+            <md-input-container flex>
+              <input mdInput
+                     #startDateElement
+                     #startDateControl="ngModel"
+                     type="text"
+                     placeholder="StartDate"
+                     [(ngModel)]="startDate"
+                     name="startDate"
+                     required>
+              <md-hint align="start">
+                <span [hidden]="startDateControl.pristine" class="tc-red-600">
+                  <span [hidden]="!startDateControl.errors?.required">Required</span>
+                </span>
+              </md-hint>
+            </md-input-container>
+            <md-input-container flex>
+              <input mdInput
+                     #endDateElement
+                     #endDateControl="ngModel"
+                     type="text"
+                     placeholder="EndDate"
+                     [(ngModel)]="endDate"
+                     name="endDate"
+                     required>
+              <md-hint align="start">
+                <span [hidden]="endDateControl.pristine" class="tc-red-600">
+                  <span [hidden]="!endDateControl.errors?.required">Required</span>
+                </span>
+              </md-hint>
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <md-select flex placeholder="Select sport"
+                       [(ngModel)]="sportId"
+                       name="sportId"
+                       required
+                       #sportIdDateElement
+                       #sportIdControl="ngModel">
+              <md-option *ngFor="let sport of sports" [value]="sport.id">
+                {{sport.label}}
+              </md-option>
+            </md-select>
+          </div>
+        </form>
+      </md-card-content>
+      <md-divider></md-divider>
+      <md-card-actions>
+        <button md-button [disabled]="!seasonForm.form.valid" color="primary" (click)="save()">SAVE</button>
+        <button md-button (click)="goBack()">CANCEL</button>
+      </md-card-actions>
+    </md-card>
+  </td-layout-manage-list>
+</td-layout-nav>

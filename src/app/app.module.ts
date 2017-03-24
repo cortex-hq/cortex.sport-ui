@@ -33,7 +33,9 @@ import { RequestInterceptor } from '../config/interceptors/request.interceptor';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SportsComponent } from './sports/sports.component';
-import { SportFormComponent } from './sports/form/sport-form/sport-form.component';
+import { SportFormComponent } from './sports/form/sport-form.component';
+import { SeasonsComponent } from './seasons/seasons.component';
+import { SeasonFormComponent } from './seasons/form/season-form.component';
 
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
@@ -61,7 +63,9 @@ const httpInterceptorProviders: Type<any>[] = [
     EmailTemplateComponent,
     EditorTemplateComponent,
     SportsComponent,
-    SportFormComponent
+    SportFormComponent,
+    SeasonsComponent,
+    SeasonFormComponent
   ], // directives, components, and pipes owned by this NgModule
   imports: [
     BrowserModule,
